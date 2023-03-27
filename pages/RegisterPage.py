@@ -40,7 +40,7 @@ class RegisterPage(PageFactory):
             self.driver.find_element(By.ID, self.captacha_id)
             self.captacha.click_button()
             time.sleep(5)
-        except (NoSuchElementException, ElementNotFoundException) as e:
+        except (NoSuchElementException, ElementNotFoundException):
             self.timeout = 10
             pass
 
