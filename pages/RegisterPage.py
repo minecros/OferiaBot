@@ -33,8 +33,7 @@ class RegisterPage(PageFactory):
         self.inputPassword.set_text(password)
         self.inputReplyPassword.set_text(password)
         self.checkboxAllPermission.click_button()
-        # if self.captacha.visibility_of_element_located():
-        #     time.sleep(10)
+
         try:
             self.timeout = 0
             self.driver.find_element(By.ID, self.captacha_id)
