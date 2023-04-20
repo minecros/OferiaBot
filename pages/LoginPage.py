@@ -15,10 +15,9 @@ class LoginPage(PageFactory):
         self.locators = {
             'inputEmail': ('ID', 'login_login'),
             'inputPassword': ('ID', 'login_password'),
-            'captacha': ('ID', 'login_captcha'),
+            'captcha': ('ID', 'login_captcha'),
             'buttonLogin': ('CLASS_NAME', 'btn-submit')
         }
-        self.captacha_id = 'login_captcha'
         self.login_page_url = 'https://www.oferia.pl/moja_oferia'
 
     def login_page(self):
@@ -33,10 +32,9 @@ class LoginPage(PageFactory):
                                      '/html/body/div[2]/div/div[2]/div/div[1]/form/div[4]/div[2]/img').screenshot(
                 'captcha.png')
             captcha = CaptchaSolver('captcha.png')
-            self.captacha.set_text(captcha.get_captcha())
+            self.captcha.set_text(captcha.get_captcha())
 
         except (NoSuchElementException, ElementNotFoundException):
-            self.timeout = 10
             pass
 
         self.buttonLogin.click_button()

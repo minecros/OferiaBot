@@ -18,9 +18,8 @@ class RegisterPage(PageFactory):
             'inputReplyPassword': ('ID', 'register_passRepeat'),
             'checkboxAllPermission': ('CLASS_NAME', 'acceptAllAgreements'),
             'buttonRegister': ('CLASS_NAME', 'btn-submit'),
-            'captacha': ('ID', 'register_captcha')
+            'captcha': ('ID', 'register_captcha')
         }
-        self.captacha_id = 'register_captcha'
         self.inbox = EmailLogic()
         self.email_address = self.inbox.email_address
         self.password = ''
@@ -38,10 +37,9 @@ class RegisterPage(PageFactory):
         try:
             self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div[2]/div/form/div[1]/div/div/div[4]/div[2]/img').screenshot('captcha.png')
             captcha = CaptchaSolver('captcha.png')
-            self.captacha.set_text(captcha.get_captcha())
+            self.captcha.set_text(captcha.get_captcha())
 
         except (NoSuchElementException, ElementNotFoundException):
-            self.timeout = 10
             pass
 
         self.buttonRegister.click_button()

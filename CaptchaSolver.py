@@ -1,5 +1,6 @@
 from twocaptcha import TwoCaptcha
 
+
 class CaptchaSolver:
 
     def __init__(self, captcha):
