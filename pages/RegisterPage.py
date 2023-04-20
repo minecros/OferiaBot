@@ -3,6 +3,7 @@ from EmailLogic import EmailLogic
 from selenium.common import NoSuchElementException
 from seleniumpagefactory.Pagefactory import PageFactory, ElementNotFoundException
 from selenium.webdriver.common.by import By
+from CaptchaSolver import CaptchaSolver
 
 
 class RegisterPage(PageFactory):
@@ -35,10 +36,10 @@ class RegisterPage(PageFactory):
         self.checkboxAllPermission.click_button()
 
         try:
-            self.timeout = 0
-            self.driver.find_element(By.ID, self.captacha_id)
-            self.captacha.click_button()
-            time.sleep(5)
+            self.driver.find_element(By.XPATH, '/html/body/div[2]/div/div[2]/div/form/div[1]/div/div/div[4]/div[2]/img').screenshot('captcha.png')
+            captcha = CaptchaSolver('captcha.png')
+            self.captacha.set_text(captcha.get_captcha())
+
         except (NoSuchElementException, ElementNotFoundException):
             self.timeout = 10
             pass

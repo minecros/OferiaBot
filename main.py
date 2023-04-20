@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.options import Options
 
 options = Options()
 options.add_experimental_option('detach', True)
+
+
 driver = webdriver.Chrome(options=options)
 driver.highlight = True
 driver.mobile_test = False
@@ -19,3 +21,4 @@ email_password = oferia.get_email_password()
 oferia = LoginPage(driver)
 oferia.login_page()
 oferia.login_user(email_password=email_password)
+
